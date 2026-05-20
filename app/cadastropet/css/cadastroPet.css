@@ -1,0 +1,590 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container principal */
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 30px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Caixa do dono */
+.dados-dono {
+  background-color: #f1f0eb;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex: 0 0 30%;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+/* Título da caixa do dono */
+.dados-dono h2 {
+  margin-top: 0;
+  color: #000000;
+}
+
+/* Caixa de cadastro */
+.cadastro-pet {
+  background-color: #f1f0eb;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Título do cadastro */
+.cadastro-pet h2 {
+  margin-top: 0;
+  color: #000000;
+}
+
+/* Grid do formulário */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: end;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.campo input[type="text"],
+.campo input[type="number"],
+.campo input[type="file"],
+.campo input[type="date"],
+.campo select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.opcoes-sexo,
+.opcoes-porte {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.azul {
+  background-color: #45d68e;
+}
+
+.preto {
+  background-color: #d66262;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* Preview da imagem */
+#preview {
+  margin-top: 10px;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+.mensagem {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.mensagem.sucesso {
+  background: #d4edda;
+  color: #155724;
+}
+
+.mensagem.erro {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.lista-pets {
+  margin-top: 2rem;
+}
+
+.pets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.pet-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.pet-foto {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ═══════════════════════════════════════
+   FORM ETAPAS (multi-step)
+═══════════════════════════════════════ */
+.form-etapas {
+  width: 100%;
+}
+
+@keyframes etapaEntrar {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.etapa-anim {
+  animation: etapaEntrar 0.35s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+
+/* Steps bar */
+.steps-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 28px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.step.active,
+.step.done {
+  opacity: 1;
+}
+
+.step-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ccc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.step.active .step-num,
+.step.done .step-num {
+  background: #45d68e;
+}
+
+.step-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: #ddd;
+  margin: 0 10px;
+}
+
+.obrig-tag {
+  font-size: 0.7rem;
+  background: #ff5722;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+/* Aviso etapa 2 */
+.aviso-etapa2 {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  color: #795548;
+  margin-top: 16px;
+}
+
+/* Campo full width */
+.campo-full {
+  grid-column: 1 / -1;
+}
+
+/* Foto upload button */
+.btn-foto-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #45d68e;
+  color: #fff;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 6px;
+}
+
+.btn-foto-upload:hover { opacity: 0.85; }
+
+.foto-preview-img {
+  margin-top: 10px;
+  max-width: 160px;
+  max-height: 160px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid #45d68e;
+}
+
+/* ═══════════════════════════════════════
+   SAÚDE — ETAPA 2
+═══════════════════════════════════════ */
+.saude-section {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+}
+
+.saude-titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #222;
+  margin: 0 0 6px;
+}
+
+.saude-hint {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0 0 16px;
+}
+
+/* Vacina card */
+.vacina-card {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border, #ddd);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.vacina-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-mid, #555);
+}
+
+.vacina-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 600px) {
+  .vacina-grid { grid-template-columns: 1fr; }
+}
+
+.btn-remove-vacina {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #fee;
+  border: 1px solid #fcc;
+  color: #c0392b;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-remove-vacina:hover { background: #fdd; }
+
+.btn-add-vacina {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 2px dashed var(--accent, #27ae60);
+  color: var(--accent, #27ae60);
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+
+.btn-add-vacina:hover { background: var(--bg, #f0fff8); }
+
+/* Carteira de vacinação — upload área */
+.carteira-upload-area {
+  border: 2px dashed var(--border, #ddd);
+  border-radius: 8px;
+  padding: 14px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: var(--bg, #fafafa);
+}
+.carteira-upload-area:hover {
+  border-color: var(--primary, #1b4f72);
+  background: var(--bg-card, #fff);
+}
+.carteira-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--text-mid, #666);
+  font-size: 0.85rem;
+}
+.carteira-upload-label i {
+  font-size: 24px;
+  color: var(--primary, #1b4f72);
+}
+.carteira-upload-label span {
+  font-weight: 600;
+  color: var(--text, #333);
+  font-size: 0.9rem;
+}
+
+.carteira-preview {
+  margin-top: 10px;
+  width: 100%;
+  max-height: 160px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--border, #ccc);
+}
+
+.carteira-preview-wrap {
+  position: relative;
+  margin-top: 10px;
+}
+.carteira-preview-wrap .carteira-troca {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-light, #999);
+  margin-top: 4px;
+  cursor: pointer;
+}
+.carteira-preview-wrap .carteira-troca:hover { color: var(--primary); }
+
+/* Saúde sucesso */
+.saude-sucesso {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.saude-sucesso-icon {
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+}
+
+.saude-sucesso h2 {
+  font-size: 1.5rem;
+  color: #222;
+  margin: 0 0 8px;
+}
+
+.saude-sucesso p {
+  color: #666;
+  margin: 0 0 24px;
+}
+
+/* ═══════════════════════════════════════
+   DARK MODE
+═══════════════════════════════════════ */
+[data-theme="dark"] .dados-dono,
+[data-theme="dark"] .cadastro-pet {
+  background-color: #1a1f2e;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .dados-dono h2,
+[data-theme="dark"] .cadastro-pet h2 {
+  color: #e0e6f0;
+}
+
+[data-theme="dark"] .dados-dono p,
+[data-theme="dark"] .dados-dono strong {
+  color: #c0cce0;
+}
+
+[data-theme="dark"] .campo label {
+  color: #c0cce0;
+}
+
+[data-theme="dark"] .campo input[type="text"],
+[data-theme="dark"] .campo input[type="number"],
+[data-theme="dark"] .campo input[type="date"],
+[data-theme="dark"] .campo select,
+[data-theme="dark"] .campo textarea {
+  background: #111827;
+  border-color: #2d3545;
+  color: #e0e6f0;
+}
+
+[data-theme="dark"] .campo input::placeholder,
+[data-theme="dark"] .campo textarea::placeholder {
+  color: #4b5563;
+}
+
+[data-theme="dark"] .opcoes-sexo label,
+[data-theme="dark"] .opcoes-porte label {
+  color: #c0cce0;
+}
+
+[data-theme="dark"] .mensagem.erro {
+  background: #2a0d0d;
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .mensagem.sucesso {
+  background: #0d2a1a;
+  color: #6ee7b7;
+}
+
+[data-theme="dark"] .saude-sucesso h2 { color: #e0e6f0; }
+[data-theme="dark"] .saude-sucesso p  { color: #8899aa; }
+[data-theme="dark"] .saude-hint       { color: #8899aa; }
+[data-theme="dark"] .step-line        { background: #2d3545; }
+
+[data-theme="dark"] .saude-section textarea {
+  background: #111827;
+  border: 1px solid #2d3545;
+  color: #e0e6f0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  width: 100%;
+  resize: vertical;
+  font-family: inherit;
+}
+
+[data-theme="dark"] .saude-section textarea::placeholder {
+  color: #4b5563;
+}
+
+[data-theme="dark"] .saude-section {
+  background: #1a1f2e;
+  border-color: #2d3545;
+}
+
+[data-theme="dark"] .saude-titulo { color: #e0e6f0; }
+
+[data-theme="dark"] .vacina-card {
+  background: #151929;
+  border-color: #2d3545;
+}
+
+[data-theme="dark"] .vacina-header { color: #aab; }
+
+[data-theme="dark"] .aviso-etapa2 {
+  background: #1f1a08;
+  border-color: #5c4a00;
+  color: #cca;
+}
+
+[data-theme="dark"] .step-label { color: #c0cce0; }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dados-dono,
+  .cadastro-pet {
+    width: 90%;
+    max-width: 700px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .botoes {
+    justify-content: center;
+  }
+}

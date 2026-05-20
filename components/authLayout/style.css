@@ -1,0 +1,46 @@
+:root {
+  --header-height: 80px;
+  --footer-height: 60px;
+}
+
+.auth-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 1100px;
+  min-height: calc(100vh - var(--header-height, 0px) - var(--footer-height, 0px));
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.image-section,
+.form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  clip-path: circle(50%);
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .auth-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 40px;
+  }
+
+  .form-section {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

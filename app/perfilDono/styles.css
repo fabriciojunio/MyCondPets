@@ -1,0 +1,370 @@
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Conteúdo principal */
+.content {
+  display: flex; 
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+/* Imagem */
+.pets-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-container {
+  width: 30%;
+  min-height: 100vh !important;
+  justify-content: start;
+  align-items: start;
+}
+
+
+.title {
+  text-align: center;
+  padding: 2%;
+  padding-bottom: 2%;
+  font-size: 50px;
+  color: #1e3a5f;
+}
+
+.contentInfos {
+  width: 70%;
+  margin: 0.5%;
+  padding-bottom: 40px;
+}
+
+/* Botões de ação do perfil */
+.acoes-perfil {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 2%;
+  margin-bottom: 20px;
+}
+
+.btn-editar {
+  background-color: #1e3a5f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn-editar:hover {
+  background-color: #2d5a8a;
+}
+
+.btns-edicao {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-salvar {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn-salvar:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.btn-salvar:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.btn-cancelar {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn-cancelar:hover:not(:disabled) {
+  background-color: #c82333;
+}
+
+.btn-cancelar:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Layout das informações */
+.infos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  color: #1e3a5f;
+  padding: 0 2%;
+}
+
+.secao-info {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.secao-titulo {
+  font-size: 20px;
+  color: #1e3a5f;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1e3a5f;
+}
+
+.label-info {
+  margin-bottom: 16px;
+}
+
+.label-info label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin-bottom: 6px;
+}
+
+.label-info .obrigatorio {
+  color: #dc3545;
+}
+
+.label-info input {
+  border: 2px solid #e9ecef;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  padding: 10px 14px;
+  border-radius: 8px;
+  width: 100%;
+  transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+
+.label-info input:disabled {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.label-info input.input-editando {
+  border: 2px solid #1e3a5f;
+  background-color: #fff;
+  cursor: text;
+}
+
+.label-info input.input-editando:focus {
+  outline: none;
+  border-color: #2d5a8a;
+  box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.15);
+}
+
+.label-info input::placeholder {
+  color: #adb5bd;
+}
+
+.label-info .hint {
+  color: #6c757d;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Seção Meus Pets */
+.meus-pets {
+  display: flex;
+  flex-direction: column;
+  color: #1e3a5f;
+  padding: 2%;
+  margin-top: 20px;
+}
+
+.titulo-pets {
+  margin-bottom: 12px;
+}
+
+.titulo-pets h2 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.lista-pets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 250px;
+}
+
+.pet-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #a8c9c7;
+  padding: 10px 14px;
+  border-radius: 8px;
+  gap: 6px;
+}
+
+/* Alertas de vacina */
+.vacina-alertas {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.vacina-alerta {
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 5px 10px;
+  line-height: 1.4;
+}
+
+.vacina-alerta.atrasada {
+  background: #fde8e8;
+  color: #c0392b;
+  border: 1px solid #f5c6c6;
+}
+
+.vacina-alerta.vencendo {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffe082;
+}
+
+/* Toast de feedback */
+.pets-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  z-index: 9999;
+  animation: toastIn 0.25s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.pets-toast-sucesso { background: #27ae60; }
+.pets-toast-erro    { background: #e74c3c; }
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.pet-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icone {
+  font-size: 20px;
+}
+
+.nome {
+  font-weight: 500;
+}
+
+.acoes {
+  display: flex;
+  gap: 6px;
+}
+
+.acoes button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn-add {
+  background-color: transparent;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  margin-top: 12px;
+  color: #1e3a5f;
+  transition: transform 0.2s;
+}
+
+.btn-add:hover {
+  transform: scale(1.1);
+}
+
+/* Aviso para completar perfil */
+.aviso-completar-perfil {
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-left: 4px solid #ffc107;
+  color: #856404;
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin: 0 2% 20px 2%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.aviso-completar-perfil i {
+  font-size: 24px;
+  color: #ffc107;
+}
+
+.aviso-completar-perfil p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+  }
+  
+  .image-container {
+    width: 100%;
+    min-height: 100vhx;
+    max-height: 100vh;
+    height: 100%;
+  }
+  
+  .contentInfos {
+    width: 100%;
+  }
+  
+  .infos {
+    grid-template-columns: 1fr;
+  }
+}
