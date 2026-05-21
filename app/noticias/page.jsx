@@ -18,7 +18,7 @@ export default async function Noticias() {
 
   let noticias = [];
 
-  if (session?.user?.isDemo) {
+  if (!session || session?.user?.isDemo) {
     noticias = DEMO_NOTICIAS;
   } else try {
     const client = await pool.connect();

@@ -42,7 +42,9 @@ export default withAuth(
           "/api",
           "/_next",
           "/images",
-          "/favicon.ico"
+          "/favicon.ico",
+          "/loja",
+          "/noticias",
         ];
 
         // Verifica se é a rota raiz exatamente

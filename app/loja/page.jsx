@@ -47,8 +47,9 @@ function SkeletonCard() {
 }
 
 export default function LojaPage() {
-  const { data: session } = useSession();
-  const isDemo = session?.user?.isDemo;
+  const { data: session, status } = useSession();
+  // Modo demo: ativo quando logado como demo OU quando não há sessão (acesso público)
+  const isDemo = !session?.user || session?.user?.isDemo;
 
   const [produtos, setProdutos] = useState([]);
   const [categorias, setCategorias] = useState([]);
