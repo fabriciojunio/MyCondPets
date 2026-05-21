@@ -15,10 +15,27 @@ const GoogleIcon = () => (
 
 const LoginComponent = () => {
   return (
-    <button className="google-btn" onClick={() => signIn("google")}>
-      <GoogleIcon />
-      <span>Entrar com Google</span>
-    </button>
+    <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
+      <button className="google-btn" onClick={() => signIn("google", { callbackUrl: "/" })}>
+        <GoogleIcon />
+        <span>Entrar com Google</span>
+      </button>
+
+      <div style={{ display: "flex", alignItems: "center", gap: "8px", margin: "4px 0" }}>
+        <div style={{ flex: 1, height: "1px", background: "#e5e7eb" }} />
+        <span style={{ fontSize: "12px", color: "#9ca3af" }}>ou</span>
+        <div style={{ flex: 1, height: "1px", background: "#e5e7eb" }} />
+      </div>
+
+      <button
+        className="google-btn"
+        style={{ background: "#f0fdf4", color: "#166534", border: "1px solid #bbf7d0" }}
+        onClick={() => signIn("demo", { callbackUrl: "/" })}
+      >
+        <span style={{ fontSize: "18px" }}>👤</span>
+        <span>Entrar como demonstração</span>
+      </button>
+    </div>
   );
 };
 

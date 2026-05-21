@@ -1,4 +1,5 @@
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { buscaOuCriaDono } from "@/app/_lib/actions/buscaOuCriaDono";
 import { verificaPerfilCompleto } from "@/app/_lib/actions/verificaPerfilCompleto";
 
@@ -7,6 +8,19 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+    CredentialsProvider({
+      id: "demo",
+      name: "Demo",
+      credentials: {},
+      async authorize() {
+        return {
+          id: "demo-user",
+          name: "Usuário Demo",
+          email: "demo@mycondpets.com",
+          image: "https://ui-avatars.com/api/?name=Demo&background=4f46e5&color=fff",
+        };
+      },
     }),
   ],
   pages: {
@@ -27,6 +41,16 @@ export const authOptions = {
     async jwt({ token, user, account, trigger }) {
       // Login inicial
       if (user && account) {
+        if (account.provider === "demo") {
+          token.id = "demo-user";
+          token.email = user.email;
+          token.name = user.name;
+          token.picture = user.image;
+          token.perfilCompleto = true;
+          token.isDemo = true;
+          return token;
+        }
+
         if (account.provider === "google") {
           try {
             const { dono, perfilCompleto } = await buscaOuCriaDono(user.email, user.name);
@@ -64,6 +88,7 @@ export const authOptions = {
       }
       session.user.id = token.id || null;
       session.user.perfilCompleto = token.perfilCompleto || false;
+      session.user.isDemo = token.isDemo || false;
       return session;
     },
   },
