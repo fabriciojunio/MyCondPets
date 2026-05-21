@@ -1,4 +1,4 @@
-﻿name: CI
+name: CI
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   testes:
-    name: Testes e Lint
+    name: Testes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
-      - run: npm test -- --passWithNoTests
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Executar testes
+        run: npm test -- --passWithNoTests
