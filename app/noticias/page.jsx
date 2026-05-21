@@ -5,13 +5,22 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/_lib/authOptions";
 
+const DEMO_NOTICIAS = [
+  { id: 1, titulo: 'Golden Retriever perdido no Bloco C', descricao: 'Meu cachorro Bolinha fugiu ontem à tarde. Ele é dourado, usa coleira azul. Por favor, entre em contato se vir!', data: new Date(), dono: 'Ana Paula', contato: '(11) 99999-1111', imagem: null, status: 'perdido', tipoAnimal: 'Cachorro', donoEmail: 'demo@mycondpets.com', localizacao: 'Condomínio · Bloco C' },
+  { id: 2, titulo: 'Gato encontrado na garagem', descricao: 'Encontrei um gato cinza com olhos verdes na garagem do bloco B. Está bem alimentado e parece dócil.', data: new Date(Date.now() - 86400000), dono: 'Carlos Silva', contato: '(11) 98888-2222', imagem: null, status: 'encontrado', tipoAnimal: 'Gato', donoEmail: 'demo@mycondpets.com', localizacao: 'Condomínio · Bloco B' },
+  { id: 3, titulo: 'Poodle desaparecido — urgente', descricao: 'Nossa Mel desapareceu perto da piscina. É uma poodle branca, pequena, com laço rosa. Recompensa para quem encontrar!', data: new Date(Date.now() - 172800000), dono: 'Fernanda Costa', contato: '(11) 97777-3333', imagem: null, status: 'perdido', tipoAnimal: 'Cachorro', donoEmail: 'demo@mycondpets.com', localizacao: 'Condomínio · Área da Piscina' },
+  { id: 4, titulo: 'Dono do Siamês foi encontrado', descricao: 'O gato siamês que estava perdido já foi devolvido ao dono. Obrigada a todos que ajudaram na busca!', data: new Date(Date.now() - 259200000), dono: 'Roberto Lima', contato: '(11) 96666-4444', imagem: null, status: 'encontrado', tipoAnimal: 'Gato', donoEmail: 'demo@mycondpets.com', localizacao: 'Condomínio · MyCondPets' },
+];
+
 export default async function Noticias() {
   const session = await getServerSession(authOptions);
   const emailUsuario = session?.user?.email || null;
 
   let noticias = [];
 
-  try {
+  if (session?.user?.isDemo) {
+    noticias = DEMO_NOTICIAS;
+  } else try {
     const client = await pool.connect();
     try {
       await client.query(`

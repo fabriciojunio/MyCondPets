@@ -1,9 +1,28 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useSession } from "next-auth/react";
 import "./styles.css";
 import { FiSearch, FiShoppingCart, FiStar, FiZap, FiTag, FiFilter } from "react-icons/fi";
 import { MdAutoAwesome } from "react-icons/md";
+
+const DEMO_CATEGORIAS = [
+  { cat_id: '1', cat_nome: 'Alimentação' },
+  { cat_id: '2', cat_nome: 'Brinquedos' },
+  { cat_id: '3', cat_nome: 'Higiene' },
+  { cat_id: '4', cat_nome: 'Acessórios' },
+];
+
+const DEMO_PRODUTOS = [
+  { prod_id: '1', prod_nome: 'Ração Premium Golden Retriever 15kg', prod_descricao: 'Ração completa para cães adultos de grande porte', prod_preco: '189.90', prod_estoque: 12, prod_imagem: '🥩', cat_nome: 'Alimentação' },
+  { prod_id: '2', prod_nome: 'Ração Natural para Gatos 3kg', prod_descricao: 'Ingredientes naturais sem conservantes artificiais', prod_preco: '67.50', prod_estoque: 8, prod_imagem: '🐟', cat_nome: 'Alimentação' },
+  { prod_id: '3', prod_nome: 'Coleira Antifuga com GPS', prod_descricao: 'Monitoramento em tempo real pelo celular', prod_preco: '249.00', prod_estoque: 5, prod_imagem: '📡', cat_nome: 'Acessórios' },
+  { prod_id: '4', prod_nome: 'Cama Ortopédica Cachorro Grande', prod_descricao: 'Espuma de alta densidade, lavável e impermeável', prod_preco: '159.90', prod_estoque: 3, prod_imagem: '🛏️', cat_nome: 'Acessórios' },
+  { prod_id: '5', prod_nome: 'Kit Brinquedos Interativos para Gato', prod_descricao: 'Varinha com penas, bolinhas e arranhador', prod_preco: '44.90', prod_estoque: 20, prod_imagem: '🧶', cat_nome: 'Brinquedos' },
+  { prod_id: '6', prod_nome: 'Shampoo Hipoalergênico para Pets', prod_descricao: 'Fórmula suave indicada por veterinários', prod_preco: '32.90', prod_estoque: 15, prod_imagem: '🧴', cat_nome: 'Higiene' },
+  { prod_id: '7', prod_nome: 'Mordedor Brinquedo Kong Resistente', prod_descricao: 'Borracha reforçada para cães que adoram morder', prod_preco: '59.90', prod_estoque: 10, prod_imagem: '🦴', cat_nome: 'Brinquedos' },
+  { prod_id: '8', prod_nome: 'Escova Dental Pet + Pasta Sabor Frango', prod_descricao: 'Kit completo para higiene bucal do seu pet', prod_preco: '24.90', prod_estoque: 18, prod_imagem: '🦷', cat_nome: 'Higiene' },
+];
 
 const SEARCH_HINTS = [
   "coleira com bolinhas vermelhas",
@@ -28,6 +47,9 @@ function SkeletonCard() {
 }
 
 export default function LojaPage() {
+  const { data: session } = useSession();
+  const isDemo = session?.user?.isDemo;
+
   const [produtos, setProdutos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [catAtiva, setCatAtiva] = useState("todos");
@@ -42,15 +64,26 @@ export default function LojaPage() {
 
   // Carrega categorias
   useEffect(() => {
+    if (isDemo) { setCategorias(DEMO_CATEGORIAS); return; }
     fetch("/api/categorias")
       .then((r) => r.json())
       .then((d) => setCategorias(d.categorias || []))
       .catch(() => {});
-  }, []);
+  }, [isDemo]);
 
   // Carrega produtos
   const carregarProdutos = useCallback(async () => {
     setLoading(true);
+    if (isDemo) {
+      const filtrados = catAtiva === "todos"
+        ? DEMO_PRODUTOS
+        : DEMO_PRODUTOS.filter((p) => p.cat_nome === catAtiva);
+      setProdutos(filtrados);
+      setBuscaAtiva("");
+      setInterpretacao("");
+      setLoading(false);
+      return;
+    }
     try {
       const params = new URLSearchParams();
       if (catAtiva !== "todos") params.set("categoria", catAtiva);
@@ -64,7 +97,7 @@ export default function LojaPage() {
     } finally {
       setLoading(false);
     }
-  }, [catAtiva]);
+  }, [catAtiva, isDemo]);
 
   useEffect(() => {
     if (!buscaAtiva) {
@@ -74,8 +107,19 @@ export default function LojaPage() {
 
   // Busca com IA — tenta semântica (embeddings) primeiro, depois local
   const buscarComIA = async (q) => {
-    if (!q.trim()) {
-      carregarProdutos();
+    if (!q.trim()) { carregarProdutos(); return; }
+    if (isDemo) {
+      setBuscando(true);
+      const ql = q.toLowerCase();
+      const found = DEMO_PRODUTOS.filter((p) =>
+        p.prod_nome.toLowerCase().includes(ql) ||
+        p.prod_descricao.toLowerCase().includes(ql) ||
+        p.cat_nome.toLowerCase().includes(ql)
+      );
+      setProdutos(found);
+      setBuscaAtiva(q);
+      setInterpretacao('');
+      setBuscando(false);
       return;
     }
     setBuscando(true);
