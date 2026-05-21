@@ -22,10 +22,10 @@ describe("LoginComponent", () => {
   test("chama a função signIn com 'google' ao clicar no botão", () => {
     render(<LoginComponent />);
     const button = screen.getByRole("button", { name: /entrar com google/i });
-    
+
     fireEvent.click(button);
 
     expect(signIn).toHaveBeenCalledTimes(1);
-    expect(signIn).toHaveBeenCalledWith("google");
+    expect(signIn).toHaveBeenCalledWith("google", { callbackUrl: "/" });
   });
 });
