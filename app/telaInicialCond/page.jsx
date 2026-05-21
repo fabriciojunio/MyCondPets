@@ -1,16 +1,30 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import "./css/telaInicial.css";
 
+const DEMO_DATA = {
+  totalPets: 48,
+  petsLost: 2,
+  totalOwners: 35,
+  apartmentsWithPets: 28,
+};
+
 export default function TelaInicialCond() {
+  const { data: session } = useSession();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => { loadData(); }, []);
+  useEffect(() => { loadData(); }, [session]);
 
   const loadData = async () => {
+    if (session?.user?.isDemo) {
+      setData(DEMO_DATA);
+      setLoading(false);
+      return;
+    }
     try {
       setLoading(true);
       setError(null);
