@@ -17,6 +17,6 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - name: Instalar dependencias
-        run: npm ci
+        run: npm install
       - name: Executar testes
         run: npm test -- --passWithNoTests
