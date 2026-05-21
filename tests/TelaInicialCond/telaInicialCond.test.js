@@ -5,6 +5,11 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import TelaInicialCond from '../../app/telaInicialCond/page';
 import { Footer } from '../../components/footer/index';
+
+jest.mock('next-auth/react', () => ({
+  useSession: jest.fn(() => ({ data: null })),
+}));
+
 // Mocks
 global.fetch = jest.fn();
 
