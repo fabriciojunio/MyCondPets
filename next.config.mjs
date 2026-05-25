@@ -14,17 +14,29 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-      "style-src 'self' 'unsafe-inline'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://kit.fontawesome.com",
+      "style-src 'self' 'unsafe-inline' https://ka-f.fontawesome.com",
       "img-src 'self' data: blob: https:",
-      "font-src 'self'",
-      "connect-src 'self' https://api-inference.huggingface.co",
+      "font-src 'self' https://ka-f.fontawesome.com",
+      "connect-src 'self' https://api-inference.huggingface.co https://ka-f.fontawesome.com",
       "frame-ancestors 'none'",
     ].join("; "),
   },
 ];
 
 const nextConfig = {
+  compress: true,
+  poweredByHeader: false,
+  productionBrowserSourceMaps: false,
+
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+
   async headers() {
     return [
       {

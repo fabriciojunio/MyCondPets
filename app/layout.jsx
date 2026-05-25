@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import { Header } from '../components/header'
 import { Footer } from "@/components/footer";
 import AuthProvider from "./authProvider/auth";
@@ -29,7 +30,11 @@ export default function RootLayout({ children }) {
           <ThemeProvider>
           <Header />
 
-          <script src="https://kit.fontawesome.com/58c0554857.js" crossOrigin="anonymous"></script>
+          <Script
+          src="https://kit.fontawesome.com/58c0554857.js"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
 
           {children}
           <Footer />
