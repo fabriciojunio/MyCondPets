@@ -265,7 +265,7 @@ export default function CriarNoticias() {
               {/* Preview da foto */}
               {fotoPreview && (
                 <div className="foto-preview">
-                  <img src={fotoPreview} alt="Preview" />
+                  <img src={fotoPreview} alt="Preview" loading="lazy" />
                   <button type="button" className="foto-remove" onClick={() => { setFotoPreview(null); setFormData(prev => ({ ...prev, foto: '' })); }}>
                     <X size={16} /> Remover
                   </button>

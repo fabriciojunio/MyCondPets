@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import "./styles.css";
 import { FiShoppingCart, FiTrash2, FiArrowLeft, FiCheck, FiTruck } from "react-icons/fi";
 import { useSession } from "next-auth/react";
@@ -190,9 +191,9 @@ export default function CarrinhoPage() {
 
             {cart.map((item) => (
               <div className="cart-item" key={item.prod_id}>
-                <div className="cart-item-img">
+                <div className="cart-item-img" style={{position:'relative'}}>
                   {item.imagem?.startsWith("/") || item.imagem?.startsWith("http") ? (
-                    <img src={item.imagem} alt={item.nome} />
+                    <Image src={item.imagem} alt={item.nome} fill style={{objectFit:'cover'}} unoptimized />
                   ) : (
                     <span>{item.imagem || "📦"}</span>
                   )}

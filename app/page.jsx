@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/_lib/authOptions";
 import "./styles.css";
@@ -107,8 +108,8 @@ export default async function Home() {
             </div>
           </div>
           <div className="hero-img-wrap">
-            <div className="hero-img-circle">
-              <img src="/images/pet1.jpg" alt="Pet feliz no condomínio" />
+            <div className="hero-img-circle" style={{position:'relative'}}>
+              <Image src="/images/pet1.jpg" alt="Pet feliz no condomínio" fill style={{objectFit:'cover'}} priority />
             </div>
             <div className="hero-img-badge">
               <div className="hero-img-badge-icon">🐾</div>

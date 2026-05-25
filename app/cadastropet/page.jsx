@@ -1,4 +1,5 @@
 import pool from "@/app/_lib/db";
+import Image from "next/image";
 import FormCadastroPet from "./FormCadastroPet";
 import "./css/cadastroPet.css";
 import { getServerSession } from "next-auth";
@@ -78,11 +79,16 @@ export default async function CadastroPage() {
             {pets.map((pet) => (
               <div key={pet.pet_id} className="pet-card">
                 {pet.pet_foto && (
-                  <img 
-                    src={pet.pet_foto} 
-                    alt={pet.pet_nome} 
-                    className="pet-foto"
-                  />
+                  <div style={{position:'relative', width:'100%', aspectRatio:'1'}}>
+                    <Image
+                      src={pet.pet_foto}
+                      alt={pet.pet_nome}
+                      fill
+                      style={{objectFit:'cover'}}
+                      className="pet-foto"
+                      unoptimized
+                    />
+                  </div>
                 )}
                 <h3>{pet.pet_nome}</h3>
                 <p>{pet.pet_tipo} - {pet.pet_raca}</p>

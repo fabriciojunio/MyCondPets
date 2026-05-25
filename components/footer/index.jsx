@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Bot, User, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import "./styles.css";
 
 export function Footer() {
@@ -129,7 +130,7 @@ export function Footer() {
         <div className="footer-main">
           {/* Brand */}
           <div className="footer-brand">
-            <img src="/images/logo/logo_fundo-removebg.png" alt="MyCondPets" className="footer-logo" />
+            <Image src="/images/logo/logo_fundo-removebg.png" alt="MyCondPets" className="footer-logo" width={180} height={48} />
             <div className="footer-brand-name">MyCondPets</div>
             <p className="footer-brand-desc">
               Plataforma completa de gestão de pets em condomínios. Segurança, organização e carinho para você e seu animal.

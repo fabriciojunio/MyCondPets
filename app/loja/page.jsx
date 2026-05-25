@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import "./styles.css";
 import { FiSearch, FiShoppingCart, FiStar, FiZap, FiTag, FiFilter } from "react-icons/fi";
 import { MdAutoAwesome } from "react-icons/md";
@@ -361,9 +362,9 @@ export default function LojaPage() {
                 const stockLabel = estoque === 0 ? "Esgotado" : estoque <= 5 ? `Últimas ${estoque} unid.` : "Em estoque";
                 return (
                   <div className="prod-card" key={p.prod_id}>
-                    <div className="prod-card-img">
+                    <div className="prod-card-img" style={{position:'relative'}}>
                       {p.prod_imagem?.startsWith("/") || p.prod_imagem?.startsWith("http") ? (
-                        <img src={p.prod_imagem} alt={p.prod_nome} />
+                        <Image src={p.prod_imagem} alt={p.prod_nome} fill style={{objectFit:'cover'}} unoptimized />
                       ) : (
                         <span>{p.prod_imagem || "📦"}</span>
                       )}

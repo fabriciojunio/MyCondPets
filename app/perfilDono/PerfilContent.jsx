@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 import { PetsList } from "./PetsList";
 
 export function PerfilContent({ dono, pets, residencia }) {
@@ -156,8 +157,8 @@ export function PerfilContent({ dono, pets, residencia }) {
           {toast.mensagem}
         </div>
       )}
-      <div className="image-container">
-        <img src="../images/pet11.jpg" className="pets-image" alt="Pet" />
+      <div className="image-container" style={{position:'relative'}}>
+        <Image src="/images/pet11.jpg" className="pets-image" alt="Pet" fill style={{objectFit:'cover'}} />
       </div>
 
       <section className="contentInfos">

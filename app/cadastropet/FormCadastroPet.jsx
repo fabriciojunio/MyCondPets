@@ -240,7 +240,7 @@ export default function FormCadastroPet({ donoId }) {
               </label>
               <input type="file" id="foto-pet-input" name="foto-pet" accept="image/*"
                 onChange={handleFotoChange} disabled={loading} style={{ display: "none" }} />
-              {preview && <img src={preview} alt="Preview" className="foto-preview-img" />}
+              {preview && <img src={preview} alt="Preview" className="foto-preview-img" loading="lazy" />}
             </div>
           </div>
 
@@ -309,7 +309,7 @@ export default function FormCadastroPet({ donoId }) {
                     </div>
                     {v.carteiraPreview && (
                       <div className="carteira-preview-wrap">
-                        <img src={v.carteiraPreview} alt="Carteira" className="carteira-preview" />
+                        <img src={v.carteiraPreview} alt="Carteira" className="carteira-preview" loading="lazy" />
                         <label className="carteira-troca" htmlFor={`carteira-${i}`}>
                           <i className="fa-solid fa-arrows-rotate"></i> Trocar imagem
                         </label>

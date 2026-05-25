@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import "./CSS/noticiasPage.css";
 import { ConfirmModal } from "@/components/ConfirmModal";
 
@@ -218,9 +219,9 @@ function PostCard({ noticia, onResolve, emailUsuario }) {
         </div>
       </div>
 
-      <div className="insta-post-img">
+      <div className="insta-post-img" style={{position:'relative'}}>
         {noticia.imagem ? (
-          <img src={noticia.imagem} alt={noticia.titulo} />
+          <Image src={noticia.imagem} alt={noticia.titulo} fill style={{objectFit:'cover'}} unoptimized />
         ) : (
           <div className="insta-img-placeholder">🐾</div>
         )}
