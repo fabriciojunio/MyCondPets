@@ -32,7 +32,7 @@ Plataforma web para gestão de pets em condomínios residenciais. Permite que mo
 - **Node.js** 18+
 - Conta no **Supabase** (banco de dados PostgreSQL gratuito)
 - Credenciais no **Google Cloud Console** (OAuth)
-- Token no **Hugging Face** (busca semântica — opcional)
+- Token no **Hugging Face** (busca semântica: opcional)
 
 ### Passo a passo
 
@@ -63,19 +63,19 @@ Acesse [http://localhost:3000](http://localhost:3000).
 Edite `.env.local` com suas credenciais:
 
 ```env
-# Supabase — crie um projeto em https://supabase.com
+# Supabase: crie um projeto em https://supabase.com
 DATABASE_URL="postgresql://user:password@host:5432/database?sslmode=require"
 
-# NextAuth.js — gere um secret com: openssl rand -base64 32
+# NextAuth.js: gere um secret com: openssl rand -base64 32
 NEXTAUTH_URL="http://localhost:3000"
 NEXTAUTH_SECRET="seu-secret-aqui"
 
-# Google OAuth — crie em https://console.cloud.google.com
+# Google OAuth: crie em https://console.cloud.google.com
 # URI de redirecionamento: http://localhost:3000/api/auth/callback/google
 GOOGLE_CLIENT_ID="seu-client-id.apps.googleusercontent.com"
 GOOGLE_CLIENT_SECRET="seu-client-secret"
 
-# Hugging Face — token em https://huggingface.co/settings/tokens
+# Hugging Face: token em https://huggingface.co/settings/tokens
 HF_TOKEN="hf_seu_token_aqui"
 
 # API Keys internas (formato: chave:label)
