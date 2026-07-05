@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { FaPaw, FaBone, FaCalendar, FaVenusMars, FaArrowsUpDownLeftRight, FaCamera, FaCheck, FaXmark, FaSyringe, FaHeart, FaPlus, FaTrash } from "react-icons/fa6";
+import { FaPaw, FaBone, FaCalendar, FaVenusMars, FaArrowsUpDownLeftRight, FaCamera, FaCheck, FaSyringe, FaHeart, FaPlus, FaTrash } from "react-icons/fa6";
 import { cadastrarPet } from "./actions";
 
 const TIPOS_VACINA = ["V8", "V10", "Antirrábica", "Giardíase", "Bordetella", "Leishmaniose", "Outra"];

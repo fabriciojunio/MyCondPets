@@ -21,7 +21,7 @@ if (!pool) {
 }
 
 // Handler para reconectar em caso de erro
-pool.on('error', (err, client) => {
+pool.on('error', (err) => {
   console.error('Erro inesperado no pool de conexões:', err);
 });
 

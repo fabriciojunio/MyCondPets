@@ -3,7 +3,7 @@ import { getClient } from '../../_lib/dbHelpers';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../../_lib/authOptions';
 
-export async function GET(request) {
+export async function GET() {
   const session = await getServerSession(authOptions);
   if (!session?.user?.email) {
     return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });

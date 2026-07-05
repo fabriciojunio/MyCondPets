@@ -50,7 +50,7 @@ export async function GET(request) {
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     }), { status: 200 });
 
-  } catch (error) {
+  } catch {
     return new Response(JSON.stringify({ error: 'Erro ao buscar pets' }), { status: 500 });
   } finally {
     if (client) client.release();
