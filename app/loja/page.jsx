@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import "./styles.css";
-import { FiSearch, FiShoppingCart, FiStar, FiZap, FiTag, FiFilter } from "react-icons/fi";
+import { FiSearch, FiShoppingCart, FiZap, FiTag } from "react-icons/fi";
 import { MdAutoAwesome } from "react-icons/md";
 
 const DEMO_CATEGORIAS = [

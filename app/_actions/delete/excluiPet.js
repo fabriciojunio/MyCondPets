@@ -20,7 +20,7 @@ export async function excluiPET(request) {
     return new Response(JSON.stringify({ message: "Pet excluído com sucesso" }), {
       status: 200,
     });
-  } catch (error) {
+  } catch {
     return new Response(JSON.stringify({ error: "Erro ao excluir pet" }), { status: 500 });
   } finally {
     client.release();

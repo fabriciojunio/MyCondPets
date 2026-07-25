@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    turbo: false,
+  // Fixa a raiz do projeto para evitar inferencia incorreta de workspace
+  // quando existem lockfiles em diretorios superiores.
+  turbopack: {
+    root: __dirname,
   },
 
   poweredByHeader: false,
@@ -13,7 +15,9 @@ const nextConfig = {
   },
 
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: [] } : false,
+    // Em producao remove console.log/info/debug (ruido e vazamento no cliente)
+    // e mantem error/warn para observabilidade no servidor.
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
   },
 
   async headers() {

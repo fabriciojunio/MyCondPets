@@ -1,5 +1,4 @@
 import pool from "@/app/_lib/db";
-import Image from "next/image";
 import FormCadastroPet from "./FormCadastroPet";
 import "./css/cadastroPet.css";
 import { getServerSession } from "next-auth";
@@ -21,7 +20,6 @@ export default async function CadastroPage() {
   // consulta ao banco – só no servidor
   const client = await pool.connect();
   let dono = null;
-  let pets = [];
   let residencia = null;
 
   try {
@@ -33,12 +31,6 @@ export default async function CadastroPage() {
     dono = donoResult.rows[0];
 
     if (dono) {
-      const petsResult = await client.query(
-        "SELECT pet_id, pet_nome, pet_tipo, pet_raca, pet_foto FROM pet WHERE don_id = $1 ORDER BY pet_id DESC;",
-        [dono.don_id]
-      );
-      pets = petsResult.rows;
-
       const residenciaResult = await client.query(
         "SELECT res_complemento FROM residencia WHERE don_id = $1;",
         [dono.don_id]
@@ -71,32 +63,6 @@ export default async function CadastroPage() {
         <h2>Cadastro do Pet</h2>
         <FormCadastroPet donoId={dono.don_id} />
       </section>
-
-      {/* {pets.length > 0 && (
-        <section className="lista-pets">
-          <h2>Pets Cadastrados</h2>
-          <div className="pets-grid">
-            {pets.map((pet) => (
-              <div key={pet.pet_id} className="pet-card">
-                {pet.pet_foto && (
-                  <div style={{position:'relative', width:'100%', aspectRatio:'1'}}>
-                    <Image
-                      src={pet.pet_foto}
-                      alt={pet.pet_nome}
-                      fill
-                      style={{objectFit:'cover'}}
-                      className="pet-foto"
-                      unoptimized
-                    />
-                  </div>
-                )}
-                <h3>{pet.pet_nome}</h3>
-                <p>{pet.pet_tipo} - {pet.pet_raca}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )} */}
     </main>
   );
 }

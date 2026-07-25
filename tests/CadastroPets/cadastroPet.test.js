@@ -81,7 +81,6 @@ describe("CadastroPage", () => {
           },
         ],
       })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] });
 
     const ui = await CadastroPage();
@@ -107,7 +106,6 @@ describe("CadastroPage", () => {
           },
         ],
       })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] });
 
     await CadastroPage();
@@ -152,7 +150,6 @@ describe("CadastroPage", () => {
           },
         ],
       })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] });
 
     const ui = await CadastroPage();
@@ -172,7 +169,6 @@ describe("CadastroPage", () => {
       .mockResolvedValueOnce({
         rows: [{ don_id: 1, don_nome: "João", don_email: "teste@email.com" }],
       })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({
         rows: [{ res_complemento: "Apto 202, Bloco B" }],
       });
@@ -193,7 +189,6 @@ describe("CadastroPage", () => {
       .mockResolvedValueOnce({
         rows: [{ don_id: 1, don_nome: "João", don_email: "teste@email.com" }],
       })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] });
 
     const ui = await CadastroPage();
@@ -218,7 +213,6 @@ describe("CadastroPage", () => {
           },
         ],
       })
-      .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [] });
 
     const ui = await CadastroPage();

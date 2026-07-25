@@ -34,10 +34,15 @@ export function rateLimit(request, { max = 20, windowMs = 60_000 } = {}) {
   return false;
 }
 
-// Limpeza periódica para evitar vazamento de memória
-setInterval(() => {
+// Limpeza periódica para evitar vazamento de memória.
+// unref() garante que o timer não impeça o processo de encerrar.
+const cleanupTimer = setInterval(() => {
   const now = Date.now();
   for (const [ip, entry] of store.entries()) {
     if (now > entry.resetAt) store.delete(ip);
   }
 }, 5 * 60_000);
+
+if (typeof cleanupTimer.unref === "function") {
+  cleanupTimer.unref();
+}

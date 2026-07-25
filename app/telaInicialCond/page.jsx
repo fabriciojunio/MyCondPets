@@ -19,7 +19,7 @@ export default function TelaInicialCond() {
 
   useEffect(() => { loadData(); }, [session]);
 
-  const loadData = async () => {
+  async function loadData() {
     if (session?.user?.isDemo) {
       setData(DEMO_DATA);
       setLoading(false);
@@ -43,7 +43,7 @@ export default function TelaInicialCond() {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   if (loading) {
     return (

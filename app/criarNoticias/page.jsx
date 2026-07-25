@@ -23,11 +23,7 @@ export default function CriarNoticias() {
   const [loadingDonos, setLoadingDonos] = useState(true);
   const [message, setMessage] = useState({ type: '', text: '' });
 
-  useEffect(() => {
-    loadDonos();
-  }, []);
-
-  const loadDonos = async () => {
+  async function loadDonos() {
     try {
       setLoadingDonos(true);
 
@@ -50,7 +46,11 @@ export default function CriarNoticias() {
     } finally {
       setLoadingDonos(false);
     }
-  };
+  }
+
+  useEffect(() => {
+    loadDonos();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

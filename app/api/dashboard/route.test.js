@@ -16,11 +16,14 @@ describe("GET /api/dashboard", () => {
   });
 
   test("retorna dados do dashboard com status 200", async () => {
-    mockClient.query
-      .mockResolvedValueOnce({ rows: [{ total_pets: "10" }] })
-      .mockResolvedValueOnce({ rows: [{ total_perdidos: "2" }] })
-      .mockResolvedValueOnce({ rows: [{ total_donos: "8" }] })
-      .mockResolvedValueOnce({ rows: [{ total_aptos_com_pets: "5" }] });
+    mockClient.query.mockResolvedValueOnce({
+      rows: [{
+        total_pets: "10",
+        total_perdidos: "2",
+        total_donos: "8",
+        total_aptos_com_pets: "5",
+      }],
+    });
 
     const res = await GET(makeRequest());
     const data = await res.json();
@@ -34,11 +37,14 @@ describe("GET /api/dashboard", () => {
   });
 
   test("retorna zeros quando queries retornam nulos", async () => {
-    mockClient.query
-      .mockResolvedValueOnce({ rows: [{ total_pets: null }] })
-      .mockResolvedValueOnce({ rows: [{ total_perdidos: null }] })
-      .mockResolvedValueOnce({ rows: [{ total_donos: null }] })
-      .mockResolvedValueOnce({ rows: [{ total_aptos_com_pets: null }] });
+    mockClient.query.mockResolvedValueOnce({
+      rows: [{
+        total_pets: null,
+        total_perdidos: null,
+        total_donos: null,
+        total_aptos_com_pets: null,
+      }],
+    });
 
     const res = await GET(makeRequest());
     const data = await res.json();

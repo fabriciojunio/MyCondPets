@@ -10,8 +10,6 @@ import {
   Home,
   LogOut,
 } from "lucide-react";
-import { useSession, signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import "./css/perfilAdministrativo.css";
 
 const CONDOMINIO_INFO = {
@@ -38,12 +36,8 @@ export default function AdminPanel() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        console.log("Iniciando fetch...");
         const response = await fetch("/api/administradores");
-        console.log("Response status:", response.status);
-
         const data = await response.json();
-        console.log("Data recebida:", data);
 
         if (Array.isArray(data)) {
           setUsers(data);

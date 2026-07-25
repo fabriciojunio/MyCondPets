@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   FiHome, FiShoppingCart, FiUser, FiLogOut,
-  FiBell, FiGrid, FiPackage, FiMenu, FiX, FiSun, FiMoon
+  FiBell, FiGrid, FiMenu, FiX, FiSun, FiMoon
 } from "react-icons/fi";
 import { MdPets } from "react-icons/md";
 import { useTheme } from "@/components/theme/ThemeProvider";
